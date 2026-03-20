@@ -1,0 +1,26 @@
+#include "ch32fun.h"
+#include <stdio.h>
+
+int main()
+{
+	SystemInit();
+
+	// Enable GPIOs
+	funGpioInitAll();
+	
+	funPinMode( PA15, MODE_OUTPUT );
+	funPinMode( PB3,  MODE_OUTPUT );
+
+	while(1)
+	{
+		funDigitalWrite( PA15, FUN_HIGH );
+		funDigitalWrite( PB3, FUN_HIGH );
+		Delay_Ms( 1550 );
+
+		funDigitalWrite( PA15, FUN_LOW );
+		funDigitalWrite( PB3, FUN_LOW );
+		Delay_Ms( 550 );
+
+		printf( "Flash !\n" );
+	}
+}
